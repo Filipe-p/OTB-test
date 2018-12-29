@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{OTB job queue algorithem}
   spec.description   = %q{This gem organizes jobs according to it's dependencies. It takes in a string of jobs sperated by a commas and organizes them from 'a' tp 'z' according the dependencies.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage      = "https://github.com/Filipe-p/cool_pay"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'

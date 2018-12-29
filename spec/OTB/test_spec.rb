@@ -4,28 +4,27 @@ RSpec.describe OTB::Test do
   end
 
   it "Passed an empty string (no jobs), the result should be an empty sequence." do
-    expect(OTB::Queue.new(
-      jobs: '').to eq('')
+    expect(OTB::Queue.new(jobs: '')).to eq('')
   end
 
   it "Given the following job structure: 'a =>'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>').to eq('a')
+      jobs: 'a =>')).to eq('a')
   end
 
   it "Given the following job structure: 'a =>, b =>, c =>'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b =>, c =>').to eq('a, b, c')
+      jobs: 'a =>, b =>, c =>')).to eq('a, b, c')
   end
 
   it "Given the following job structure: 'a =>, b => c, c =>'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b => c, c =>').to eq('a, c, b')
+      jobs: 'a =>, b => c, c =>')).to eq('a, c, b')
   end
 
   it "Given the following job structure: 'a =>, b => c, c => f, d => a, e => b, f =>'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b => c, c => f, d => a, e => b, f =>').to eq('a, f, c, b, d, e')
+      jobs: 'a =>, b => c, c => f, d => a, e => b, f =>')).to eq('a, f, c, b, d, e')
   end
 
   # it "Given the following job structure: 'a =>, b =>, c => c'" do
@@ -36,12 +35,12 @@ RSpec.describe OTB::Test do
 
   it "Given the following job structure: 'a =>, b =>, c => c'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b =>, c => c').to eq('The result should be an error stating that jobs can’t depend on themselves.')
+      jobs: 'a =>, b =>, c => c')).to eq('The result should be an error stating that jobs can’t depend on themselves.')
   end
 
   it "Given the following job structure: 'a =>, b => c, c => f, d => a, e =>, f => b'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b => c, c => f, d => a, e =>, f => b').to eq('The result should be an error stating that jobs can’t have circular dependencies.')
+      jobs: 'a =>, b => c, c => f, d => a, e =>, f => b')).to eq('The result should be an error stating that jobs can’t have circular dependencies.')
   end
 
 
