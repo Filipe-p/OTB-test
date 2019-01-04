@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "OTB/test"
+require 'otb.rb'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

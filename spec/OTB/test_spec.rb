@@ -4,7 +4,7 @@ RSpec.describe OTB::Test do
   end
 
   it "Passed an empty string (no jobs), the result should be an empty sequence." do
-    expect(OTB::Queue.new(jobs: '')).to eq('')
+    expect(OTB::Queue.new('')).to eq('')
   end
 
   it "Given the following job structure: 'a =>'" do
