@@ -1,8 +1,8 @@
 module OTB
   class Queue
 
-    def initialize(string: '')
-      puts "i'm here"
+    def initialize(job)
+     @job = job
     end
   end
 
