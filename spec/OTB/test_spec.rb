@@ -1,4 +1,4 @@
-RSpec.describe OTB::Test do
+RSpec.describe 'OTB - test & exceptions' do
   it "has a version number" do
     expect(OTB::Test::VERSION).not_to be nil
   end
@@ -7,11 +7,23 @@ RSpec.describe OTB::Test do
     expect{OTB::Queue.new().sort_sequence}.to raise_error(JobQueueError)
   end
 
+  it "Given the following job structure: 'a =>, b =>, c => c'" do
+    expect{OTB::Queue.new(
+          jobs: 'a =>, b =>, c => c').sort_sequence}.to raise_error(JobQueueError)
+  end
+
+  it "Given the following job structure: 'a =>, b => c, c => f, d => a, e =>, f => b'" do
+    expect{OTB::Queue.new(
+          jobs: 'a =>, b => c, c => f, d => a, e =>, f => b').sort_sequence}.to raise_error(JobQueueError)
+  end
+
+end
+
+RSpec.describe 'OTB::Queue and sequencing' do
 
   it "Passed an empty string (no jobs), the result should be an empty sequence." do
     expect(OTB::Queue.new(jobs: '').sort_sequence).to eq('')
   end
-
 
   it "Given the following job structure: 'a =>'" do
     expect(OTB::Queue.new(
@@ -39,15 +51,7 @@ RSpec.describe OTB::Test do
   # end
 
 
-  it "Given the following job structure: 'a =>, b =>, c => c'" do
-    expect(OTB::Queue.new(
-      jobs: 'a =>, b =>, c => c').sort_sequence).to eq('The result should be an error stating that jobs can’t depend on themselves.')
-  end
-
-  it "Given the following job structure: 'a =>, b => c, c => f, d => a, e =>, f => b'" do
-    expect(OTB::Queue.new(
-      jobs: 'a =>, b => c, c => f, d => a, e =>, f => b').sort_sequence).to eq('The result should be an error stating that jobs can’t have circular dependencies.')
-  end
+end
 
 
   # it "Given the following job structure: 'a =>, b => c, c => f, d => a, e =>, f => b'" do
@@ -55,4 +59,4 @@ RSpec.describe OTB::Test do
   #     jobs: 'a =>, b => c, c => f, d => a, e =>, f => b').to eq(Error::StandardError)
   # end
 
-end
+
