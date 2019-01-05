@@ -1,5 +1,6 @@
-require_relative 'OTB/otb/queue'
-require_relative "OTB/test/version"
+require_relative 'OTB/queue'
+require_relative 'OTB/version'
+require_relative 'OTB/exception'
 
 
 module OTB
