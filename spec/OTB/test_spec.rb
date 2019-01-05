@@ -35,7 +35,7 @@ RSpec.describe 'OTB::Queue and sequencing' do
       jobs: 'a => \nb => \nc =>').sort_sequence).to eq('a, b, c')
   end
 
-  it "Given the following job structure: 'a => \nb => c \nc =>'" do
+  it "Given the following job structure:" + 'a => \nb => c \nc =>' do
     expect(OTB::Queue.new(
       jobs: 'a => \nb => c \nc =>').sort_sequence).to eq('a, c, b')
   end
