@@ -7,14 +7,14 @@ RSpec.describe 'OTB - test & exceptions' do
     expect{OTB::Queue.new().sort_sequence}.to raise_error(JobQueueError)
   end
 
-  it "Given the following job structure: 'a =>, b =>, c => c'" do
+  it "Given the following job structure: " + 'a => \nb => \nc => c' do
     expect{OTB::Queue.new(
-          jobs: 'a =>, b =>, c => c').sort_sequence}.to raise_error(JobQueueError)
+          jobs: 'a => \nb => \nc => c').sort_sequence}.to raise_error(JobQueueError)
   end
 
-  it "Given the following job structure: 'a =>, b => c, c => f, d => a, e =>, f => b'" do
+  it "Given the following job structure: " + 'a => \nb => c \nc => f \nd => a \ne => \nf => b' do
     expect{OTB::Queue.new(
-          jobs: 'a =>, b => c, c => f, d => a, e =>, f => b').sort_sequence}.to raise_error(JobQueueError)
+          jobs: 'a => \nb => c \nc => f \nd => a \ne => \nf => b').sort_sequence}.to raise_error(JobQueueError)
   end
 
 end
@@ -30,33 +30,19 @@ RSpec.describe 'OTB::Queue and sequencing' do
       jobs: 'a =>').sort_sequence).to eq('a')
   end
 
-  it "Given the following job structure: 'a =>, b =>, c =>'" do
+  it "Given the following job structure: " + 'a => \nb => \nc =>' do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b =>, c =>').sort_sequence).to eq('a, b, c')
+      jobs: 'a => \nb => \nc =>').sort_sequence).to eq('a, b, c')
   end
 
-  it "Given the following job structure: 'a =>, b => c, c =>'" do
+  it "Given the following job structure: 'a => \nb => c \nc =>'" do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b => c, c =>').sort_sequence).to eq('a, c, b')
+      jobs: 'a => \nb => c \nc =>').sort_sequence).to eq('a, c, b')
   end
 
-  it "Given the following job structure: 'a =>, b => c, c => f, d => a, e => b, f =>'" do
+  it "Given the following job structure: " + 'a => \nb => c \nc => f \nd => a \ne => b \nf =>' do
     expect(OTB::Queue.new(
-      jobs: 'a =>, b => c, c => f, d => a, e => b, f =>').sort_sequence).to eq('a, f, c, b, d, e')
+      jobs: 'a => \nb => c \nc => f \nd => a \ne => b \nf =>').sort_sequence).to eq('a, f, c, b, d, e')
   end
-
-  # it "Given the following job structure: 'a =>, b =>, c => c'" do
-  #   expect(OTB::Queue.new(
-  #     jobs: 'a =>, b => c, c => f, d => a, e => b, f =>').to eq(Error::StandardError)
-  # end
-
 
 end
-
-
-  # it "Given the following job structure: 'a =>, b => c, c => f, d => a, e =>, f => b'" do
-  #   expect(OTB::Queue.new(
-  #     jobs: 'a =>, b => c, c => f, d => a, e =>, f => b').to eq(Error::StandardError)
-  # end
-
-

@@ -17,7 +17,9 @@ module OTB
         when nil
           raise JobQueueError.no_input_error
         else
-          'Not and empty string'
+          check_self_dependency
+          check_circular_dependency
+          sort_jobs_to_sequence
       end
     end
 
@@ -30,7 +32,18 @@ module OTB
 
     def check_empty_string?
       @jobs == '' ? '' : false
+    end
 
+    def check_self_dependency
+     # puts 'checking the self dependency'
+    end
+
+    def check_circular_dependency
+     # puts 'checking the circular dependency'
+    end
+
+    def sort_jobs_to_sequence
+    # puts 'Sorting a bunch of jobs'
     end
   end
 end
