@@ -2,12 +2,15 @@ require 'pry'
 
 module OTB
   class Queue
-    attr_accessor :jobs
+    attr_accessor :jobs, :jobs_parsed
     #Intializing Queue
       #usign hash for parameter for
     def initialize(jobs:nil)
      @jobs = jobs
      ##if I check thing like this it will not exit
+     #binding.pry
+
+     @jobs_parsed = OTB::Job.parse(string: @jobs) unless jobs.nil?
     end
 
     def sort_sequence
