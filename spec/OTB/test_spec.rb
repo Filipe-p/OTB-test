@@ -3,9 +3,9 @@ RSpec.describe OTB::Test do
     expect(OTB::Test::VERSION).not_to be nil
   end
 
-  # it "Passed nothing, the result should be an error that jobs has not been defined" do
-  #   expect(OTB::Queue.new()).to #eq('')
-  # end
+  it "Passed nothing, the result should be an error that jobs has not been defined" do
+    expect{OTB::Queue.new().sort_sequence}.to raise_error(JobQueueError)
+  end
 
 
   it "Passed an empty string (no jobs), the result should be an empty sequence." do

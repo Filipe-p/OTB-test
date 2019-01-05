@@ -4,8 +4,8 @@ require_relative 'OTB/exception'
 
 
 module OTB
-  module Test
-    class Error < StandardError; end
-    # Your code goes here...
-  end
+  # module Test
+  #   class Error < StandardError; end
+  #   # Your code goes here...
+  # end
 end

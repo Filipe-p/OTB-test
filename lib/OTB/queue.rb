@@ -15,7 +15,7 @@ module OTB
         when ''
           ''
         when nil
-          raise
+          raise JobQueueError.no_input_error
         else
           'Not and empty string'
       end
@@ -32,6 +32,5 @@ module OTB
       @jobs == '' ? '' : false
 
     end
-
   end
 end

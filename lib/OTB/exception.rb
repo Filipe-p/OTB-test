@@ -10,7 +10,7 @@ class JobQueueError < StandardError;
 
 
   def self.no_input_error
-    exception message: "No input passed. jobs: was nill" , internal_code: 2004, code: 204
+    exception message: "No input passed. jobs: was nil" , internal_code: 2004, code: 204
   end
 
 end
