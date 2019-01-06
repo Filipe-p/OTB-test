@@ -52,7 +52,7 @@ module OTB
       sequence = []
       jobs_parsed.each do |job, dependency|
         if dependency.empty?
-          sequence << job
+          sequence << job unless sequence.include?(job)
         elsif sequence.include?(job)
           sequence.each_with_index do |s, i|
             if s == job
