@@ -29,7 +29,7 @@ module OTB
     private
 
     def check_self_dependency(jobs_parsed)
-     # puts 'checking the self dependency'
+     # checking the self dependency
      jobs_parsed.each do |job, dependency|
        if job == dependency
          raise JobQueueError.self_dependency_error
@@ -48,7 +48,51 @@ module OTB
     end
 
     def sort_jobs_to_sequence(jobs_parsed)
-    # puts 'Sorting a bunch of jobs'
+      # binding.pry
+      sequence = []
+      jobs_parsed.each do |job, dependency|
+        if dependency.empty?
+          sequence << job
+        elsif sequence.include?(job)
+          sequence.each_with_index do |s, i|
+            if s == job
+               sequence.insert(i, dependebcy)
+            end
+          end
+        else
+          sequence << dependency
+          sequence << job
+        end
+      end
+
+
+      sequence.join(', ')
+      # puts 'Sorting a bunch of jobs'
+      # get jobs parsed
+      # check if job if before dependecy
+        #
+      # else
+        #inverte Job & depencecy
+      # end
     end
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
