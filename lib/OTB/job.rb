@@ -13,11 +13,9 @@ module OTB
       jobs_array = jobs.split('\n')
       result_hash = {}
 
-      # binding.pry
-
-
-      if jobs_array == ''
+      if jobs == ''
         result_hash[''] =['']
+        result_hash
       else
         array_job_dependencies_sanitized = jobs_array.each do |job_dependency|
             array_job_dependency = []
