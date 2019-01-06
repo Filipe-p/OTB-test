@@ -1,5 +1,6 @@
 require "bundler/setup"
-require "OTB/test"
+# require "OTB/test"
+# require "OTB/job_spec"
 require 'otb.rb'
 
 RSpec.configure do |config|

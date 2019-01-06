@@ -10,7 +10,7 @@ module OTB
      ##if I check thing like this it will not exit
      #binding.pry
 
-     @jobs_parsed = OTB::Job.parse(string: @jobs) unless jobs.nil?
+     @jobs_parsed = OTB::Job.parse(@jobs) unless jobs.nil?
     end
 
     def sort_sequence
@@ -20,32 +20,23 @@ module OTB
         when nil
           raise JobQueueError.no_input_error
         else
-          check_self_dependency
-          check_circular_dependency
-          sort_jobs_to_sequence
+          check_self_dependency(@jobs_parsed)
+          check_circular_dependency(@jobs_parsed)
+          sort_jobs_to_sequence(@jobs_parsed)
       end
     end
 
     private
 
-    def check_nil?
-      #self? Check if nill.
-        # Raise Error no job to queue
-    end
-
-    def check_empty_string?
-      @jobs == '' ? '' : false
-    end
-
-    def check_self_dependency
+    def check_self_dependency(jobs_parsed)
      # puts 'checking the self dependency'
     end
 
-    def check_circular_dependency
+    def check_circular_dependency(jobs_parsed)
      # puts 'checking the circular dependency'
     end
 
-    def sort_jobs_to_sequence
+    def sort_jobs_to_sequence(jobs_parsed)
     # puts 'Sorting a bunch of jobs'
     end
   end
