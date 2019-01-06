@@ -7,12 +7,12 @@ RSpec.describe 'OTB - test & exceptions' do
     expect{OTB::Queue.new().sort_sequence}.to raise_error(JobQueueError)
   end
 
-  it "Given the following job structure: " + 'a => \nb => \nc => c' do
+  it "Given the following job structure: " + 'a => \nb => \nc => c' + ' to raise JobQueueError - self_dependency_error'do
     expect{OTB::Queue.new(
           jobs: 'a => \nb => \nc => c').sort_sequence}.to raise_error(JobQueueError)
   end
 
-  it "Given the following job structure: " + 'a => \nb => c \nc => f \nd => a \ne => \nf => b' do
+  it "Given the following job structure: " + 'a => \nb => c \nc => f \nd => a \ne => \nf => b' + ' to raise JobQueueError' do
     expect{OTB::Queue.new(
           jobs: 'a => \nb => c \nc => f \nd => a \ne => \nf => b').sort_sequence}.to raise_error(JobQueueError)
   end

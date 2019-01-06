@@ -30,6 +30,11 @@ module OTB
 
     def check_self_dependency(jobs_parsed)
      # puts 'checking the self dependency'
+     jobs_parsed.each do |job, dependency|
+       if job == dependency
+         raise JobQueueError.self_dependency_error
+       end
+     end
     end
 
     def check_circular_dependency(jobs_parsed)
