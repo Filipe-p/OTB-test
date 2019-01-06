@@ -38,7 +38,13 @@ module OTB
     end
 
     def check_circular_dependency(jobs_parsed)
-     # puts 'checking the circular dependency'
+     jobs_parsed.each_with_index do |job_dependency, index|
+      [job_dependency].each do |job, dependency|
+        if jobs_parsed.keys[0..index].include?(dependency)
+          raise JobQueueError.circular_dependecy_error
+        end
+      end
+     end
     end
 
     def sort_jobs_to_sequence(jobs_parsed)

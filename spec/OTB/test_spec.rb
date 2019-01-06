@@ -12,7 +12,7 @@ RSpec.describe 'OTB - test & exceptions' do
           jobs: 'a => \nb => \nc => c').sort_sequence}.to raise_error(JobQueueError)
   end
 
-  it "Given the following job structure: " + 'a => \nb => c \nc => f \nd => a \ne => \nf => b' + ' to raise JobQueueError' do
+  it "Given the following job structure: " + 'a => \nb => c \nc => f \nd => a \ne => \nf => b' + ' to raise JobQueueError - circular_dependency_error' do
     expect{OTB::Queue.new(
           jobs: 'a => \nb => c \nc => f \nd => a \ne => \nf => b').sort_sequence}.to raise_error(JobQueueError)
   end

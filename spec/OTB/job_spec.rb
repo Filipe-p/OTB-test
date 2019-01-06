@@ -3,7 +3,6 @@ RSpec.describe 'Job Class - Intializer' do
   it "New Job has a @job" do
     expect(OTB::Job.new('')).not_to be_nil
   end
-
 end
 
 RSpec.describe 'Job Class - Parser' do
@@ -36,5 +35,4 @@ RSpec.describe 'Job Class - Parser' do
   it 'When passed ' + 'a => \nb => c \nc => f \nd => a \ne => b \nf' + " to respond with {'a'=>'', 'b'=>'c','c'=>'f','d'=>'a','e'=>'b','f'=>''}" do
     expect(OTB::Job.parse('a => \nb => c \nc => f \nd => a \ne => b \nf')).to eq({'a'=>'', 'b'=>'c','c'=>'f','d'=>'a','e'=>'b','f'=>''})
   end
-
 end
