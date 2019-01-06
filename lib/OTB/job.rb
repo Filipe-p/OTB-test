@@ -12,21 +12,22 @@ module OTB
     def self.parse(jobs)
       jobs_array = jobs.split('\n')
       result_hash = {}
-
+      # binding.pry
       if jobs == ''
-        result_hash[''] =['']
+        result_hash[''] =''
         result_hash
       else
         array_job_dependencies_sanitized = jobs_array.each do |job_dependency|
             array_job_dependency = []
             array_job_dependency << job_dependency.split('=>')
             array_job_dependency.each do |job, dependency|
-              result_hash[job.chop] = dependency.chop
+              if dependency.nil?; dependency = '' else dependency.strip! end
+              result_hash[job.strip] = dependency
             end
         end
 
-        p @result_hash = result_hash
-        p result_hash
+        # p @result_hash = result_hash
+        # p result_hash
         result_hash
         #binding.pry
 

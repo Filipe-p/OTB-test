@@ -17,24 +17,24 @@ RSpec.describe 'Job Class - Parser' do
   end
 
   it "When passed empty string ('')  to respond ''=>['']}" do
-    expect(OTB::Job.parse('')).to eq({''=>['']})
+    expect(OTB::Job.parse('')).to eq({''=>''})
   end
 
   it "When passed 'a =>' to respond with a hash" do
-    expect(OTB::Job.parse('')).to be_a_kind_of(Hash)
+    expect(OTB::Job.parse('a =>')).to be_a_kind_of(Hash)
   end
 
-  it "When passed 'a =>' to respond with a'=>['']}" do
-    expect(OTB::Job.parse('')).to eq({'a'=>['']})
+  it "When passed 'a =>' to respond with a'=>''}" do
+    expect(OTB::Job.parse('a =>')).to eq({'a'=>''})
   end
 
 
-  it 'When passed' + 'a => \nb => \nc => ' + " to respond {'a'=>[''], 'b'=>[''],'c'=>['']}" do
-    expect(OTB::Job.parse('a => \nb => \nc =>')).to eq({'a'=>[''], 'b'=>[''],'c'=>['']})
+  it 'When passed ' + 'a => \nb => \nc => ' + " to respond {'a'=>'', 'b'=>'','c'=>''}" do
+    expect(OTB::Job.parse('a => \nb => \nc =>')).to eq({'a'=>'', 'b'=>'','c'=>''})
   end
 
-  it 'When passed' + 'a => \nb => c \nc => f \nd => a \ne => b \nf' + " to respond with {'a'=>[''], 'b'=>['c'],'c'=>['f'],'d'=>['a'],'e'=>['b'],'f'=>['']}" do
-    expect(OTB::Job.parse('a => \nb => c \nc => f \nd => a \ne => b \nf')).to eq({'a'=>[''], 'b'=>['c'],'c'=>['f'],'d'=>['a'],'e'=>['b'],'f'=>['']})
+  it 'When passed ' + 'a => \nb => c \nc => f \nd => a \ne => b \nf' + " to respond with {'a'=>'', 'b'=>'c','c'=>'f','d'=>'a','e'=>'b','f'=>''}" do
+    expect(OTB::Job.parse('a => \nb => c \nc => f \nd => a \ne => b \nf')).to eq({'a'=>'', 'b'=>'c','c'=>'f','d'=>'a','e'=>'b','f'=>''})
   end
 
 end
