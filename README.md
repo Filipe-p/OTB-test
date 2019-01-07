@@ -15,6 +15,7 @@ And respondes with an ordered sequence of the jobs that takes into accoun the de
 
 Read usage to see how to call methods.
 
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -78,6 +79,22 @@ returns:
   => {"a"=>"", "b"=>"", "c"=>""}
 ```
 A Hash with keys being the jobs and values the dependencies.
+
+## Loading to terminal
+
+From terminal open your ruby console:
+
+    $ irb
+
+Then load the file `lib/otb.rb`:
+
+    $ pry(main)> load 'lib/otb.rb'
+
+It should return `true`.
+
+Then you can:
+
+    $ pry(main)>  OTB::Queue.new(string: 'a =>').sort_sequence
 
 
 ## Testes
