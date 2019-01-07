@@ -48,25 +48,16 @@ module OTB
 
     def sort_jobs_to_sequence(jobs_parsed)
       sequence = []
-      pairs = []
+
       jobs_parsed.each do |job, dependency|
         if dependency.empty?
           sequence << job unless sequence.include?(job)
         elsif sequence.include?(job)
-          binding.pry
-          sequence.each_with_index do |seqc_value, index|
-            p sequence
-            sleep(2)
-
-            if seqc_value == job #sequence?
-               sequence.insert(index, dependency)
-            end
-          end
+          index = sequence.find_index(job)
+          sequence.insert(index, dependency)
         else
-          sequence << dependency
-          sequence << job
-          pairs << [job, dependency]
-          p pairs
+          sequence << dependency unless sequence.include?(dependency)
+          sequence << job unless sequence.include?(job)
         end
       end
       sequence.join(', ')
