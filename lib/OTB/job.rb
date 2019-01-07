@@ -12,7 +12,6 @@ module OTB
     def self.parse(jobs)
       jobs_array = jobs.split('\n')
       result_hash = {}
-      # binding.pry
       if jobs == ''
         result_hash[''] =''
         result_hash
@@ -25,24 +24,8 @@ module OTB
               result_hash[job.strip] = dependency
             end
         end
-
-        # p @result_hash = result_hash
-        # p result_hash
         result_hash
-        #binding.pry
-
       end
-
     end
-
-
-    # Get a String,
-    # split(/n) => array with the Jobs individual string
-    # for each, maybe a map, do a split(=>)
-    # stick result in hash or do the map end in hash
-    #
-
-    private
-
   end
 end

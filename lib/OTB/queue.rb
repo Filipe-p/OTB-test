@@ -4,12 +4,9 @@ module OTB
   class Queue
     attr_accessor :jobs, :jobs_parsed
     #Intializing Queue
-      #usign hash for parameter for
+      #usign job:nil for stability & regidity
     def initialize(jobs:nil)
      @jobs = jobs
-     ##if I check thing like this it will not exit
-     #binding.pry
-
      @jobs_parsed = OTB::Job.parse(@jobs) unless jobs.nil?
     end
 
@@ -29,7 +26,6 @@ module OTB
     private
 
     def check_self_dependency(jobs_parsed)
-     # checking the self dependency
      jobs_parsed.each do |job, dependency|
        if job == dependency
          raise JobQueueError.self_dependency_error
@@ -38,61 +34,43 @@ module OTB
     end
 
     def check_circular_dependency(jobs_parsed)
-     jobs_parsed.each_with_index do |job_dependency, index|
+      hash_jobs_with_depencecies = {}
+
+      jobs_parsed.each_with_index do |job_dependency, index|
       [job_dependency].each do |job, dependency|
-        if jobs_parsed.keys[0..index].include?(dependency)
+        if hash_jobs_with_depencecies.keys.include?(dependency) && hash_jobs_with_depencecies.values.include?(job)
           raise JobQueueError.circular_dependecy_error
         end
+        hash_jobs_with_depencecies[job] = dependency unless dependency.empty?
       end
      end
     end
 
     def sort_jobs_to_sequence(jobs_parsed)
-      # binding.pry
       sequence = []
+      pairs = []
       jobs_parsed.each do |job, dependency|
         if dependency.empty?
           sequence << job unless sequence.include?(job)
         elsif sequence.include?(job)
-          sequence.each_with_index do |s, i|
-            if s == job
-               sequence.insert(i, dependebcy)
+          sequence.each_with_index do |seqc_value, index|
+            p sequence
+            sleep(2)
+
+            if seqc_value == job #sequence?
+               sequence.insert(index, dependency)
             end
           end
         else
           sequence << dependency
           sequence << job
+          pairs << [job, dependency]
+          p pairs
         end
       end
-
-
       sequence.join(', ')
-      # puts 'Sorting a bunch of jobs'
-      # get jobs parsed
-      # check if job if before dependecy
-        #
-      # else
-        #inverte Job & depencecy
-      # end
     end
   end
 end
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+rake stop
