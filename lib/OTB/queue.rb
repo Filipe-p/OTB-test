@@ -53,6 +53,7 @@ module OTB
         if dependency.empty?
           sequence << job unless sequence.include?(job)
         elsif sequence.include?(job)
+          binding.pry
           sequence.each_with_index do |seqc_value, index|
             p sequence
             sleep(2)
@@ -73,4 +74,3 @@ module OTB
   end
 end
 
-rake stop
