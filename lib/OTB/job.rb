@@ -1,11 +1,11 @@
-require 'pry'
-
 module OTB
   class Job
 
     attr_accessor :job
 
     def initialize(job)
+      # Further version of the code might want to change the initialization and create several Job objects.
+      # These could then be saved in the DB as such or passed to the queuer.
       @job = job
     end
 

@@ -1,10 +1,8 @@
-require 'pry'
-
 module OTB
   class Queue
     attr_accessor :jobs, :jobs_parsed
-    #Intializing Queue
-      #usign job:nil for stability & regidity
+
+    #usign job:nil for stability
     def initialize(jobs:nil)
      @jobs = jobs
      @jobs_parsed = OTB::Job.parse(@jobs) unless jobs.nil?
