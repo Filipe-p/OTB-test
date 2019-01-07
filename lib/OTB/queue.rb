@@ -2,10 +2,13 @@ module OTB
   class Queue
     attr_accessor :jobs, :jobs_parsed
 
-    #usign job:nil for stability
-    def initialize(jobs:nil)
-     @jobs = jobs
-     @jobs_parsed = OTB::Job.parse(@jobs) unless jobs.nil?
+    #usign job:nil for stability & latter flexibity
+        # Idea being you could also have string:nil
+        # then you could initialized with Job objects in the jobs:
+        # or you could initialized with String objects in the string:
+    def initialize(string:nil)
+     @jobs = string
+     @jobs_parsed = OTB::Job.parse(@jobs) unless string.nil?
     end
 
     def sort_sequence
