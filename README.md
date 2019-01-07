@@ -60,16 +60,46 @@ The usage of the gem methods is the same in terminal or in project. Check above 
 You can also run the tests to see everything is passing! Skip to section ##Test to do this.
 
 ###Queue Class Usage
+The purpose of this class is to create queues and then sort them.
+As such there are two public methods:
+ - Initialization with `new`
+ and
+ - sorting according to dependecies `sort_sequence` on a Queue object
+
 ####Creating a new Queue
-
 ```
-  OTB::Queue.new(jobs: String)
+  OTB::Queue.new(string: 'a =>')
 ```
+returns:
+```
+  => #<OTB::Queue:0x00007f8433d04260 @jobs="a =>", @jobs_parsed={"a"=>""}>
+```
+An OTB::Queue with @jobs and @jobs_parsed available
 
-Sorting a Queue
+####Sorting a Queue
+```
+  new_queue = OTB::Queue.new(string: 'a =>')
+  new_queue.sort_sequence
+```
+returns:
+```
+  => "a"
+```
+A string witht the sequence of the jobs ordered.
+
 
 ###Job Class - Currently only parse implemented
-
+Job Class exists to parse strings of jobs into Hashes of jobs with dependencies.
+Further releases will allow you to store individial job objects and create several from a string.
+####Parsing jobs
+```
+  OTB::Job.parse('a => \nb => \nc =>')
+```
+returns:
+```
+  => {"a"=>"", "b"=>"", "c"=>""}
+```
+A Hash with keys being the jobs and values the dependencies.
 
 
 ## Testes
