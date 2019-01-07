@@ -16,11 +16,12 @@ module OTB
         result_hash[''] =''
         result_hash
       else
-        array_job_dependencies_sanitized = jobs_array.each do |job_dependency|
+        jobs_array.each do |job_dependency|
             array_job_dependency = []
             array_job_dependency << job_dependency.split('=>')
             array_job_dependency.each do |job, dependency|
               if dependency.nil?; dependency = '' else dependency.strip! end
+
               result_hash[job.strip] = dependency
             end
         end
