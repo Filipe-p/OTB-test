@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    OTB-test (0.1.0)
+    OTB-test (0.1.2)
 
 GEM
   remote: https://rubygems.org/
